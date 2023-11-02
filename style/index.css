@@ -1,0 +1,686 @@
+html {
+  background-color: #000;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+html::-webkit-scrollbar {
+  width: 0.625rem;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 8px;
+}
+html::-webkit-scrollbar-track {
+  background-color: #000;
+}
+
+body {
+  font-family: "Pretendard" !important;
+  color: #fff;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-normal.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-normal.eot?#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-normal.woff2") format("woff2"), url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-normal.woff") format("woff"), url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-normal.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "YouandiModernTR";
+  src: url("/font/YouandiModernTR.ttf");
+}
+@font-face {
+  font-family: "YouandiBlack";
+  src: url("/font/Youandi-Black.ttf");
+}
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 50%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.container {
+  width: 100%;
+  height: 5rem;
+}
+.container .header {
+  font-family: "YouandiModernTR";
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.container .header:hover, .container .header.active {
+  background-color: #fff;
+}
+.container .header:hover .logo img, .container .header.active .logo img {
+  filter: invert(100%);
+}
+.container .header:hover .gnb a, .container .header.active .gnb a {
+  color: #000;
+}
+.container .header .header_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+}
+
+.logo {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.logo img {
+  max-width: 60%;
+}
+
+nav .gnb {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: #fff;
+}
+nav .gnb a {
+  padding: 2.5rem 1.5rem 2.3rem;
+  position: relative;
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+}
+nav .gnb a:hover {
+  font-weight: 700;
+}
+nav .gnb a::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.125rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #0000ff;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 250ms ease-in-out;
+}
+nav .gnb a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.trigger {
+  display: none;
+}
+
+.inner .login_wrap {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2.5rem;
+}
+.inner .login_wrap .login_logo {
+  width: 30%;
+}
+.inner .login_wrap .login_logo img {
+  max-width: 45%;
+}
+.inner .login_wrap .login_btn {
+  cursor: pointer;
+  font-family: "YouandiModernTR";
+  width: 15.625rem;
+  padding: 20px;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+}
+.inner .login_wrap .login_btn:hover {
+  color: #0000ff;
+  border: 1px solid #0000ff;
+  font-weight: 700;
+}
+
+.login {
+  font-family: "YouandiModernTR";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.login .login_form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.login .login_form input {
+  padding: 1.25rem 0.625rem;
+  border: none;
+  font-family: "YouandiModernTR";
+  font-size: 0.8125rem;
+  width: 18.75rem;
+}
+.login .login_form .login_id {
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.6352941176);
+}
+.login .login_form .login_pw {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.login .login_btnwrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+  font-size: 0.8125rem;
+  border-top: 1px solid #fff;
+  padding-top: 0.9375rem;
+}
+.login .login_btnwrap .login_save {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+.login .login_btnwrap .login_save input[id=loginSave] {
+  display: none;
+}
+.login .login_account {
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+input[id=loginSave] + em {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: url(/images/common/checkbox.png) left center/cover no-repeat;
+  transform: translateY(0.3125rem);
+  margin: 0 0.3125rem;
+  border-radius: 100%;
+  margin: 0 0.5rem 0.625rem 0;
+}
+
+input[id=loginSave]:checked + em {
+  background-position: right;
+}
+
+.p_container {
+  width: 100%;
+  height: auto;
+}
+.p_container .inner {
+  position: relative;
+}
+.p_container .inner h1 {
+  position: sticky;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  text-transform: uppercase;
+  font-family: "YouandiBlack";
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+
+.parallax_wrap {
+  width: 100%;
+  padding: 10% 1.875rem;
+  position: relative;
+}
+.parallax_wrap .parallax_img {
+  width: 100%;
+  text-align: left;
+  padding: 0 15%;
+}
+.parallax_wrap .parallax_img:nth-child(even) {
+  text-align: right;
+}
+.parallax_wrap .parallax_img img {
+  width: 30%;
+}
+
+.info {
+  padding: 6.25rem 0;
+  margin-bottom: 0;
+}
+.info .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.875rem;
+}
+
+.info_text {
+  font-family: "YouandiModernTR";
+}
+.info_text h1 {
+  font-size: 2.25rem;
+  margin-bottom: 1.875rem;
+}
+.info_text p {
+  font-size: 1.125rem;
+  line-height: 1.8rem;
+}
+
+.map #googleMap {
+  width: 100%;
+  height: 26.25rem;
+}
+.map .inner {
+  position: relative;
+}
+.map .inner .map_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  position: absolute;
+  bottom: -5%;
+  left: 10%;
+  text-align: center;
+  padding: 0.8125rem 0.625rem;
+  width: 80%;
+  margin: auto;
+  background-color: #fff;
+  color: #000;
+  font-family: "YouandiModernTR";
+  box-shadow: 0 2px 3px #fff;
+}
+.map .inner .map_text h1 {
+  font-weight: 700;
+}
+
+section {
+  margin-bottom: 7rem;
+}
+section:last-child {
+  padding-bottom: 7rem;
+}
+section .inner {
+  width: 90%;
+  margin: auto;
+}
+
+.inner .main_sub_tit {
+  font-family: "YouandiModernTR";
+  font-size: 2.25rem;
+}
+
+.welcome {
+  width: 100%;
+  position: relative;
+}
+
+.welcome_text {
+  width: 95%;
+  margin: auto;
+  position: absolute;
+  bottom: 7%;
+  z-index: 8;
+}
+.welcome_text img {
+  width: 8.25rem;
+}
+.welcome_text h1 {
+  font-size: 4rem;
+  line-height: 5rem;
+  font-weight: 700;
+  padding-top: 2rem;
+}
+.welcome_text h1 span {
+  font-family: "YouandiBlack";
+  font-size: 1.8rem;
+  text-transform: capitalize;
+  position: relative;
+}
+.welcome_text h1 span::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.125rem;
+  position: absolute;
+  bottom: -18.5%;
+  left: 0;
+  background-color: #fff;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 250ms ease-in-out;
+}
+.welcome_text h1 span:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.main_slide {
+  position: absolute;
+  width: 100%;
+}
+.main_slide div img {
+  width: 100%;
+  height: 43.75rem;
+}
+
+.album_list {
+  padding-top: 3.125rem;
+}
+.album_list span {
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-family: "YouandiModernTR";
+  position: relative;
+}
+.album_list span::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -15%;
+  left: 0;
+  width: 100%;
+  height: 0.125rem;
+  background-color: #fff;
+}
+
+.albums {
+  margin-top: 9.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.875rem;
+  flex-wrap: wrap;
+}
+.albums .album_wrap {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: calc(25% - 3rem);
+}
+.albums .album_wrap:hover .rot_lp {
+  bottom: 45%;
+  animation: rotate 3s 0.7s infinite linear;
+  filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.1921568627));
+}
+.albums .album_wrap .album_thumb {
+  width: 100%;
+}
+.albums .album_wrap .rot_lp {
+  position: absolute;
+  bottom: 3%;
+  left: 2.5%;
+  z-index: -1;
+  transition: 0.5s;
+  width: 95%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.post_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin-top: 3.125rem;
+}
+.post_list .post_wrap {
+  width: calc(25% - 3rem);
+  position: relative;
+}
+.post_list .post_wrap .post_img {
+  overflow: hidden;
+}
+.post_list .post_wrap .post_img img {
+  width: 100%;
+  transition: all 0.3s linear;
+}
+.post_list .post_wrap .post_img img:hover {
+  scale: 1.3;
+}
+.post_list .post_wrap .post_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  position: absolute;
+  bottom: -5%;
+  left: 10%;
+  text-align: center;
+  padding: 0.8125rem 0.625rem;
+  width: 80%;
+  margin: auto;
+  background-color: #fff;
+  color: #000;
+  font-family: "YouandiModernTR";
+  box-shadow: 0 2px 3px #fff;
+}
+.post_list .post_wrap .post_text h1 {
+  font-weight: 700;
+}
+
+.monthly_mv {
+  width: 100%;
+}
+.monthly_mv .mv_slide {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 3.125rem;
+}
+.monthly_mv .mv_slide div {
+  height: 19.6875rem;
+}
+.monthly_mv .mv_slide iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.875rem;
+}
+
+.swiper-button-prev {
+  background: white;
+  border-radius: 50%;
+  top: 47%;
+  left: -30px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.17);
+}
+.swiper-button-prev::after {
+  font-size: 1.4rem;
+  content: "";
+}
+.swiper-button-prev svg {
+  width: 25px;
+}
+
+.swiper-button-next {
+  background: white;
+  border-radius: 50%;
+  top: 47%;
+  right: -30px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.17);
+  border: 2px solid red;
+  z-index: 30;
+}
+.swiper-button-next::after {
+  font-size: 1.4rem;
+  content: ">";
+}
+
+#topBtn {
+  position: fixed;
+  right: 2%;
+  bottom: 5%;
+  display: none;
+  z-index: 8;
+  cursor: pointer;
+}
+#topBtn:hover i {
+  color: #0000ff;
+  border: 2px solid #0000ff;
+  transition: all 0.2s linear;
+  background-color: #fff;
+}
+#topBtn i {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 0.625rem 0.6875rem;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
+}/*# sourceMappingURL=index.css.map */

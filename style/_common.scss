@@ -1,0 +1,36 @@
+// font family
+$ko_point_font: 'YouandiModernTR';
+$font: 'Pretendard';
+$en_point_font: 'YouandiBlack';
+
+
+// color list
+$font_color: #fff;
+$bg_color: #000;
+$point_color_bl: #0000ff;
+$point_color_rd: #ff0066;
+
+
+html {
+    background-color: $bg_color;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 0.625rem;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $font_color;
+        border-radius: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: $bg_color;
+    }
+}
+
+body {
+    font-family: $font !important;
+    color: $font_color;
+}
